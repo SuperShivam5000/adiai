@@ -1,0 +1,37 @@
+import React from 'react';
+import { User, Bot } from 'lucide-react';
+import type { Message } from '../types';
+
+interface ChatMessageProps {
+  message: Message;
+}
+
+export function ChatMessage({ message }: ChatMessageProps) {
+  return (
+    <div className={`flex gap-4 p-6 ${message.role === 'assistant' ? 'bg-gray-800' : ''}`}>
+      <div className="flex-shrink-0">
+        {message.role === 'assistant' ? (
+          <Bot className="w-6 h-6 text-blue-500" />
+        ) : (
+          <User className="w-6 h-6 text-green-500" />
+        )}
+      </div>
+      <div className="flex-1 min-w-0">
+        {message.model && (
+          <div className="text-sm text-gray-400 mb-2">
+            Model: {message.model}
+          </div>
+        )}
+        {message.isImage ? (
+          <img 
+            src={`data:image/png;base64,${message.content}`} 
+            alt="Generated image"
+            className="max-w-full rounded-lg shadow-lg"
+          />
+        ) : (
+          <p className="text-gray-200 whitespace-pre-wrap break-words">{message.content}</p>
+        )}
+      </div>
+    </div>
+  );
+}
