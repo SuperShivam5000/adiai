@@ -1,5 +1,4 @@
-import React from 'react';
-import { MessageCircle, Plus, Trash2 } from 'lucide-react';
+import { MessageCircle, Plus, Trash2, X } from 'lucide-react';
 import type { Conversation } from '../types';
 
 interface SidebarProps {
@@ -9,6 +8,7 @@ interface SidebarProps {
   onNewConversation: () => void;
   onDeleteConversation: (id: string) => void;
   isOpen: boolean;
+  setSidebarOpen: (open: boolean) => void;
 }
 
 export function Sidebar({
@@ -17,8 +17,19 @@ export function Sidebar({
   onSelectConversation,
   onNewConversation,
   onDeleteConversation,
-  isOpen
+  isOpen,
+  setSidebarOpen
 }: SidebarProps) {
+  const handleNewChat = () => {
+    onNewConversation();
+    setSidebarOpen(false);
+  };
+
+  const handleSelectConversation = (id: string) => {
+    onSelectConversation(id);
+    setSidebarOpen(false);
+  };
+
   return (
     <div 
       className={`
@@ -28,9 +39,16 @@ export function Sidebar({
         z-50
       `}
     >
+      {/* Close Button for mobile */}
+      <div className="flex justify-end md:hidden p-4">
+        <button onClick={() => setSidebarOpen(false)} className="text-white hover:text-gray-400">
+          <X size={24} />
+        </button>
+      </div>
+
       <button
-        onClick={onNewConversation}
-        className="flex items-center gap-2 mx-4 my-6 p-3 rounded-lg border border-gray-700 hover:bg-gray-800 text-white text-lg"
+        onClick={handleNewChat}
+        className="flex items-center gap-2 mx-4 my-2 p-3 rounded-lg border border-gray-700 hover:bg-gray-800 text-white text-lg"
       >
         <Plus size={20} />
         New Chat
@@ -42,10 +60,10 @@ export function Sidebar({
             key={conv.id}
             className={`
               flex items-center justify-between p-4 cursor-pointer
-              hover:bg-gray-800 group
+              hover:bg-gray-800
               ${activeConversation === conv.id ? 'bg-gray-800' : ''}
             `}
-            onClick={() => onSelectConversation(conv.id)}
+            onClick={() => handleSelectConversation(conv.id)}
           >
             <div className="flex items-center gap-3 text-gray-300 flex-1 min-w-0">
               <MessageCircle size={20} />
@@ -56,7 +74,7 @@ export function Sidebar({
                 e.stopPropagation();
                 onDeleteConversation(conv.id);
               }}
-              className="opacity-0 group-hover:opacity-100 hover:text-red-500 p-2"
+              className="text-gray-400 hover:text-red-500 p-2"
             >
               <Trash2 size={20} />
             </button>

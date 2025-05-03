@@ -1,5 +1,5 @@
-import React from 'react';
 import { User, Bot } from 'lucide-react';
+import ReactMarkdown from 'react-markdown';
 import type { Message } from '../types';
 
 interface ChatMessageProps {
@@ -19,7 +19,7 @@ export function ChatMessage({ message }: ChatMessageProps) {
       <div className="flex-1 min-w-0">
         {message.model && (
           <div className="text-sm text-gray-400 mb-2">
-            Model: {message.model}
+            {message.role === 'user' ? 'You' : `Model: ${message.model}`}
           </div>
         )}
         {message.isImage ? (
@@ -29,7 +29,11 @@ export function ChatMessage({ message }: ChatMessageProps) {
             className="max-w-full rounded-lg shadow-lg"
           />
         ) : (
-          <p className="text-gray-200 whitespace-pre-wrap break-words">{message.content}</p>
+          <div className="prose prose-invert max-w-none text-gray-200">
+            <ReactMarkdown>
+              {message.content}
+            </ReactMarkdown>
+          </div>
         )}
       </div>
     </div>

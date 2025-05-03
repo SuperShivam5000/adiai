@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { Send, Image, Paperclip, Search } from 'lucide-react';
-import { REAL_NAME_MAP } from '../types';
+import { REAL_NAME_MAP, VISION_MODELS, IMAGE_GENERATION_MODELS } from '../types';
 
 interface ChatBoxProps {
   onSubmit: (prompt: string, model: string, useSearch: boolean, image?: string, files?: string[]) => void;
@@ -38,7 +38,7 @@ export function ChatBox({ onSubmit }: ChatBoxProps) {
         reader.readAsDataURL(file);
       });
     });
-    
+
     const base64Files = await Promise.all(filePromises);
     setFiles(base64Files);
   };
@@ -76,46 +76,54 @@ export function ChatBox({ onSubmit }: ChatBoxProps) {
         />
 
         <div className="flex items-center gap-4">
-          <input
-            type="file"
-            ref={imageInputRef}
-            onChange={handleImageChange}
-            accept="image/*"
-            className="hidden"
-          />
-          <button
-            type="button"
-            onClick={() => imageInputRef.current?.click()}
-            className="p-2 rounded bg-gray-700 hover:bg-gray-600 text-white"
-            title="Attach image"
-          >
-            <Image size={20} />
-          </button>
+          {!IMAGE_GENERATION_MODELS.includes(selectedModel) && (
+            <>
+              {VISION_MODELS.includes(selectedModel) && (
+                <>
+                  <input
+                    type="file"
+                    ref={imageInputRef}
+                    onChange={handleImageChange}
+                    accept="image/*"
+                    className="hidden"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => imageInputRef.current?.click()}
+                    className="p-2 rounded bg-gray-700 hover:bg-gray-600 text-white"
+                    title="Attach image"
+                  >
+                    <Image size={20} />
+                  </button>
+                </>
+              )}
 
-          <input
-            type="file"
-            ref={fileInputRef}
-            onChange={handleFilesChange}
-            multiple
-            className="hidden"
-          />
-          <button
-            type="button"
-            onClick={() => fileInputRef.current?.click()}
-            className="p-2 rounded bg-gray-700 hover:bg-gray-600 text-white"
-            title="Attach files"
-          >
-            <Paperclip size={20} />
-          </button>
+              <input
+                type="file"
+                ref={fileInputRef}
+                onChange={handleFilesChange}
+                multiple
+                className="hidden"
+              />
+              <button
+                type="button"
+                onClick={() => fileInputRef.current?.click()}
+                className="p-2 rounded bg-gray-700 hover:bg-gray-600 text-white"
+                title="Attach files"
+              >
+                <Paperclip size={20} />
+              </button>
 
-          <button
-            type="button"
-            onClick={() => setUseSearch(!useSearch)}
-            className={`p-2 rounded ${useSearch ? 'bg-blue-600 hover:bg-blue-700' : 'bg-gray-700 hover:bg-gray-600'} text-white`}
-            title="Enable web search"
-          >
-            <Search size={20} />
-          </button>
+              <button
+                type="button"
+                onClick={() => setUseSearch(!useSearch)}
+                className={`p-2 rounded ${useSearch ? 'bg-blue-600 hover:bg-blue-700' : 'bg-gray-700 hover:bg-gray-600'} text-white`}
+                title="Enable web search"
+              >
+                <Search size={20} />
+              </button>
+            </>
+          )}
 
           <button
             type="submit"
@@ -126,7 +134,7 @@ export function ChatBox({ onSubmit }: ChatBoxProps) {
           </button>
         </div>
 
-        {image && (
+        {image && VISION_MODELS.includes(selectedModel) && (
           <div className="relative">
             <img src={image} alt="Selected" className="max-h-40 rounded" />
             <button
@@ -138,7 +146,7 @@ export function ChatBox({ onSubmit }: ChatBoxProps) {
           </div>
         )}
 
-        {files.length > 0 && (
+        {!IMAGE_GENERATION_MODELS.includes(selectedModel) && files.length > 0 && (
           <div className="flex flex-wrap gap-2">
             {files.map((file, index) => (
               <div key={index} className="flex items-center gap-2 bg-gray-700 p-2 rounded">
