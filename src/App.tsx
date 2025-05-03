@@ -117,6 +117,7 @@ function App() {
     if (!updatedConversation) return;
 
     const simplifiedMessages = simplifyConversation(updatedConversation);
+    console.log("Simplified Messages: \n"+simplifiedMessages);
     const apiRequest: ApiRequest = {
       model: REAL_NAME_MAP[model as keyof typeof REAL_NAME_MAP],
       provider: MODEL_PROVIDER_MAP[model as keyof typeof MODEL_PROVIDER_MAP],

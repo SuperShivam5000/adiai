@@ -103,6 +103,7 @@ export function ChatBox({ onSubmit }: ChatBoxProps) {
                 ref={fileInputRef}
                 onChange={handleFilesChange}
                 multiple
+                accept=".csv,.doc,.docx,.eml,.epub,.gif,.htm,.html,.jpeg,.jpg,.json,.log,.mp3,.msg,.odt,.ogg,.pdf,.png,.pptx,.ps,.psv,.rtf,.tff,.tif,.tiff,.tsv,.txt,.wav,.xls,.xlsx"
                 className="hidden"
               />
               <button
