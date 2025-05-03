@@ -1,0 +1,9 @@
+{
+  "appId": "com.adi.adiai",
+  "appName": "AdiAI",
+  "webDir": "public",
+  "server": {
+    "url": "https://adiai.onrender.com/",
+    "cleartext": true
+  }
+}
