@@ -52,6 +52,7 @@ export function ChatBox({ onSubmit }: ChatBoxProps) {
       setPrompt('');
       setImage('');
       setFiles([]);
+      setUseSearch(false);
     }
   };
 
