@@ -179,7 +179,7 @@ function App() {
         setSidebarOpen={setIsSidebarOpen}
       />
 
-      <div className="flex-1 flex flex-col relative">
+      <div className="flex-1 flex flex-col relative min-w-0">
         <nav className="bg-gray-800 p-4 flex items-center gap-5 shadow-lg">
           <button
             onClick={() => setIsSidebarOpen(!isSidebarOpen)}
