@@ -22,7 +22,7 @@ Instant unlocking of reasoning, vision, file uploads, web search, and more.
 Effortlessly switch between language and image generation in one place.      
 No payments. No login. No questions asked.     
 
-AdiAI: Unleash the full arsenal of today’s LLMs, your way. Available as a Web App (installable on any platform) and as a native Android application.
+AdiAI: Unleash the full arsenal of today’s LLMs, your way. Available as a Web App (installable on any device) and as a native Android application.
 
 Tech Stack: Typescript, React.js, Vite, IDB-Keyval, Tailwind CSS, Lucide, Capacitor.js, Progressive Web Apps, Python, FastAPI, Textract, Docker, Render (Hosting), [GPT4Free](https://github.com/xtekky/gpt4free)
 
