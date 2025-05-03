@@ -78,6 +78,12 @@ export function ChatBox({ onSubmit }: ChatBoxProps) {
         <textarea
           value={prompt}
           onChange={(e) => setPrompt(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter' && !e.shiftKey) {
+              e.preventDefault();
+              handleSubmit(e as unknown as React.FormEvent);
+            }
+          }}
           placeholder="Type your message..."
           className="w-full p-3 bg-gray-700 text-white rounded border border-gray-600 min-h-[100px]"
         />
@@ -147,7 +153,7 @@ export function ChatBox({ onSubmit }: ChatBoxProps) {
             <img src={image} alt="Selected" className="max-h-40 rounded" />
             <button
               onClick={() => setImage('')}
-              className="absolute top-2 right-2 p-1 bg-red-500 text-white rounded-full"
+              className="absolute top-2 right-2 h-6 w-6 flex items-center justify-center bg-red-500 text-white text-sm leading-none rounded-full"
             >
               ×
             </button>
