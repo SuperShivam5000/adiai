@@ -1,0 +1,29 @@
+{
+  "name": "AdiAI",
+  "short_name": "AdiAI",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#000000",
+  "icons": [
+    {
+      "src": "/pwa/icon.png",
+      "type": "image/png",
+      "sizes": "1024x1024"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/pwa/screenshots/screenshot1.png",
+      "sizes": "1919x1079",
+      "type": "image/png",
+      "form_factor": "wide"
+    },
+    {
+      "src": "/pwa/screenshots/screenshot2.png",
+      "sizes": "376x825",
+      "type": "image/png",
+      "form_factor": "narrow"
+    }
+  ]
+}
