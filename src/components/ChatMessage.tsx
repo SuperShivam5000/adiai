@@ -29,7 +29,7 @@ export function ChatMessage({ message }: ChatMessageProps) {
             className="max-w-full rounded-lg shadow-lg"
           />
         ) : (
-          <div className="prose prose-invert break-words max-w-full overflow-x-auto text-gray-200 whitespace-pre-wrap">
+          <div className="prose prose-invert break-words max-w-full overflow-x-auto text-gray-200 whitespace-pre-wrap [&_pre]:whitespace-break-spaces">
             <ReactMarkdown>
               {message.content}
             </ReactMarkdown>
