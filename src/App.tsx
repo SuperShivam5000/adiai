@@ -7,6 +7,12 @@ import type { Conversation, Message, ApiRequest } from './types';
 import { BACKEND_URL, REAL_NAME_MAP, MODEL_PROVIDER_MAP, VISION_MODELS, IMAGE_GENERATION_MODELS } from './types';
 import axios from 'axios';
 
+function simplifyConversation(conversation: Conversation){
+  return conversation.messages
+    .filter(msg => !msg.isImage && msg.content.trim() !== '')
+    .map(({ role, content }) => ({ role, content }));
+};
+
 function App() {
   const [conversations, setConversations] = useState<Conversation[]>([]);
   const [activeConversation, setActiveConversation] = useState<string | null>(null);
@@ -70,42 +76,54 @@ function App() {
       content: prompt,
       model: model
     };
-
+  
+    let updatedConversations: Conversation[] = [];
+    let updatedConversation: Conversation | undefined;
+  
+    // Update the conversation first (adding user message)
+    updatedConversations = conversations.map(conv => {
+      if (conv.id === activeConversation) {
+        const newConv = {
+          ...conv,
+          messages: [...conv.messages, userMessage],
+          title: conv.messages.length === 0 ? prompt.slice(0, 30) : conv.title,
+        };
+        updatedConversation = newConv;
+        return newConv;
+      }
+      return conv;
+    });
+  
+    setConversations(updatedConversations);
+  
+    // Safety check
+    if (!updatedConversation) return;
+  
+    // Simplify the updated conversation
+    const simplifiedMessages = simplifyConversation(updatedConversation);
+    console.log("Simplified Messages:\n"+simplifiedMessages);
+  
     const apiRequest: ApiRequest = {
-      prompt,
       model: REAL_NAME_MAP[model as keyof typeof REAL_NAME_MAP],
       provider: MODEL_PROVIDER_MAP[model as keyof typeof MODEL_PROVIDER_MAP],
       use_search: useSearch,
       image_base64: image?.split(',')[1] || '',
       file_base64: files?.map(file => file.split(',')[1]) || [],
+      messages: simplifiedMessages  // <-- Attach simplified conversation here
     };
-
-    // Update conversation with user message
-    const updatedConversations = conversations.map(conv => {
-      if (conv.id === activeConversation) {
-        return {
-          ...conv,
-          messages: [...conv.messages, userMessage],
-          title: conv.messages.length === 0 ? prompt.slice(0, 30) : conv.title,
-        };
-      }
-      return conv;
-    });
-    setConversations(updatedConversations);
-
-    // Make API call here
+  
     try {
       const response = await axios.post(BACKEND_URL + 'g4f', apiRequest);
       console.log('POST response:', response.data);
+  
       if (response.data.message || response.data.image_base64) {
-        // API response
         const assistantMessage: Message = {
           role: 'assistant',
           content: response.data.message || response.data.image_base64,
           model: model,
-          isImage: response.data.image_base64
+          isImage: !!response.data.image_base64
         };
-        // Update conversation with assistant message
+  
         const finalConversations = updatedConversations.map(conv => {
           if (conv.id === activeConversation) {
             return {
@@ -115,6 +133,7 @@ function App() {
           }
           return conv;
         });
+  
         setConversations(finalConversations);
       } else if (response.data.error) {
         console.error('API Error:', response.data.error);
@@ -122,6 +141,7 @@ function App() {
     } catch (error) {
       console.error('POST error:', error);
     }
+  
     console.log('API Request:', apiRequest);
   };
 

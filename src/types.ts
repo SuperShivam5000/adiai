@@ -15,12 +15,13 @@ export interface Conversation {
 }
 
 export interface ApiRequest {
-  prompt: string;
+  prompt?: string;
   model: string;
   provider: string;
   use_search: boolean;
   image_base64: string;
   file_base64: string[];
+  messages?: { role: 'user' | 'assistant'; content: string }[];
 }
 
 export const REAL_NAME_MAP = {
