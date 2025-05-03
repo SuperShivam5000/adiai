@@ -74,8 +74,21 @@ function App() {
   const deleteConversation = (id: string) => {
     const updated = conversations.filter(conv => conv.id !== id);
     setConversations(updated);
+
     if (activeConversation === id) {
-      setActiveConversation(null);
+      if (updated.length > 0) {
+        setActiveConversation(updated[0].id);
+      } else {
+        // Create a new conversation if none remain
+        const newConversation: Conversation = {
+          id: Date.now().toString(),
+          title: 'New Chat',
+          messages: [],
+          timestamp: Date.now(),
+        };
+        setConversations([newConversation]);
+        setActiveConversation(newConversation.id);
+      }
     }
   };
 
@@ -117,7 +130,7 @@ function App() {
     if (!updatedConversation) return;
 
     const simplifiedMessages = simplifyConversation(updatedConversation);
-    console.log("Simplified Messages: \n"+simplifiedMessages);
+    console.log("Simplified Messages: \n" + simplifiedMessages);
     const apiRequest: ApiRequest = {
       model: REAL_NAME_MAP[model as keyof typeof REAL_NAME_MAP],
       provider: MODEL_PROVIDER_MAP[model as keyof typeof MODEL_PROVIDER_MAP],
