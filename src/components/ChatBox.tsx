@@ -24,6 +24,7 @@ export function ChatBox({ onSubmit }: ChatBoxProps) {
       };
       reader.readAsDataURL(file);
     }
+    e.target.value = ''; // Reset input to allow re-selection or cancel
   };
 
   const handleFilesChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -41,6 +42,7 @@ export function ChatBox({ onSubmit }: ChatBoxProps) {
 
     const base64Files = await Promise.all(filePromises);
     setFiles(base64Files);
+    e.target.value = ''; // Reset input to allow re-selection or cancel
   };
 
   const handleSubmit = (e: React.FormEvent) => {
