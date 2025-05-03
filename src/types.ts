@@ -47,17 +47,17 @@ export const MODEL_PROVIDER_MAP = {
   'Llama 4': 'PollinationsAI',
 }
 
-export const ICON_MAP = {
-  'GPT 4o': ['Brain','Vision','File','Search'],
-  'Gemini 2.5 Flash': ['Brain','Vision','File','Search'],
-  'Claude 3.7 Sonnet': ['Brain','Vision','File','Search'],
-  'Phi-4': ['Brain','Vision','File','Search'],
-  'Deepseek R1': ['Brain','File','Search'],
-  'Qwen 2.5 Max': ['Brain','File','Search'],
-  'Llama 4': ['Brain','File','Search'],
-  'Flux': ['Image'],
-  'Dall-E-3': ['Image'],
-  'Midjourney': ['Image']
+export const ICON_MAP: Record<string, string> = {
+  'GPT 4o': "🧠👁️📁🔎",
+  'Gemini 2.5 Flash': "🧠👁️📁🔎",
+  'Claude 3.7 Sonnet': "🧠👁️📁🔎",
+  'Phi-4': "🧠👁️📁🔎",
+  'Deepseek R1': "🧠📁🔎",
+  'Qwen 2.5 Max': "🧠📁🔎",
+  'Llama 4': "🧠📁🔎",
+  'Flux': "🖼️",
+  'Dall-E-3': "🖼️",
+  'Midjourney': "🖼️"
 }
 
 export const VISION_MODELS = ['Phi-4', 'Gemini 2.5 Flash', 'Claude 3.7 Sonnet', 'GPT 4o'];

@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { Send, Image, Paperclip, Search } from 'lucide-react';
-import { REAL_NAME_MAP, VISION_MODELS, IMAGE_GENERATION_MODELS } from '../types';
+import { REAL_NAME_MAP, VISION_MODELS, IMAGE_GENERATION_MODELS, ICON_MAP } from '../types';
 
 interface ChatBoxProps {
   onSubmit: (prompt: string, model: string, useSearch: boolean, image?: string, files?: string[]) => void;
@@ -55,6 +55,13 @@ export function ChatBox({ onSubmit }: ChatBoxProps) {
 
   return (
     <div className="p-4 bg-gray-800 rounded-lg">
+      <p className="text-sm text-gray-400 mb-2 flex flex-wrap gap-x-3 gap-y-1">
+        <span>🧠Reasoning</span>
+        <span>👁️Vision</span>
+        <span>📁File OCR</span>
+        <span>🔎Web Search</span>
+        <span>🖼️Image Generation</span>
+      </p>
       <select
         value={selectedModel}
         onChange={(e) => setSelectedModel(e.target.value)}
@@ -62,7 +69,7 @@ export function ChatBox({ onSubmit }: ChatBoxProps) {
       >
         {Object.entries(REAL_NAME_MAP).map(([model]) => (
           <option key={model} value={model}>
-            {model}
+            {model} {ICON_MAP[model] || ''}
           </option>
         ))}
       </select>
