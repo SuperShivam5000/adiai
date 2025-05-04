@@ -17,10 +17,9 @@ Flux
 DALL-E-3     
 Midjourney      
 
-Cross model memory—start your conversation with one model, pick it up with another, no awkward resets.      
+Game-Changing Feature: Cross-Model Memory enables you to start a conversation with one model and seamlessly continue it with another—no resets, no lost context.      
 Instant unlocking of reasoning, vision, file uploads, web search, and more.      
-Effortlessly switch between language and image generation in one place.      
-No payments. No login. No questions asked.     
+No payments. No login. No questions asked.       
 
 AdiAI: Unleash the full arsenal of today’s LLMs, your way. Available as a Web App (installable on any device) and as a native Android application.
 
