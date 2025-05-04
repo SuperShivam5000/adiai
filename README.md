@@ -11,7 +11,7 @@ Gemini 2.5 Flash
 Claude 3.7 Sonnet     
 Phi-4     
 Deepseek-R1     
-Qwen 2.5 Max     
+Qwen QwQ     
 Llama 4     
 Flux     
 DALL-E-3     
