@@ -3,7 +3,7 @@
 This repository contains the client for AdiAI. Check out the backend [here](https://github.com/SuperShivam5000/adiai-backend).  
 Feel free to use this via API calls or create your own client. Documentation for backend API calls can be found [here](https://documenter.getpostman.com/view/22855640/2sB2j3CsNJ). 
 
-What if you could access the latest and greatest LLMs—free, forever, no hidden strings?
+What if you could access the latest and greatest LLMs—free, forever, unlimited, no hidden strings?
 
 Meet AdiAI: your all-in-one AI powerhouse. Seamlessly reason, generate images, analyze docs, search the web and more, all through a unified interface that connects you to cutting-edge models including:     
 GPT-4o     
