@@ -23,22 +23,16 @@ function App() {
   useEffect(() => {
     const init = async () => {
       try {
-        const data = await loadConversations();
-        if (data && data.length > 0) {
-          setConversations(data);
-          setActiveConversation(data[0].id);
-        } else {
-          const newConversation: Conversation = {
-            id: Date.now().toString(),
-            title: 'New Chat',
-            messages: [],
-            timestamp: Date.now(),
-          };
-          setConversations([newConversation]);
-          setActiveConversation(newConversation.id);
-        }
+        const newConversation: Conversation = {
+          id: Date.now().toString(),
+          title: 'New Chat',
+          messages: [],
+          timestamp: Date.now(),
+        };
+        setConversations([newConversation]);
+        setActiveConversation(newConversation.id);
       } catch (err) {
-        console.error('Failed to load from IndexedDB:', err);
+        console.error('Initialization error:', err);
       }
 
       try {
@@ -51,6 +45,42 @@ function App() {
 
     init();
   }, []);
+
+  useEffect(() => {
+    let touchStartX = 0;
+    let touchEndX = 0;
+  
+    const handleTouchStart = (e: TouchEvent) => {
+      touchStartX = e.changedTouches[0].screenX;
+    };
+  
+    const handleTouchMove = (e: TouchEvent) => {
+      touchEndX = e.changedTouches[0].screenX;
+    };
+  
+    const handleTouchEnd = () => {
+      const diff = touchEndX - touchStartX;
+  
+      if (diff > 50) {
+        // Swipe right
+        setIsSidebarOpen(true);
+      } else if (diff < -50) {
+        // Swipe left
+        setIsSidebarOpen(false);
+      }
+    };
+  
+    document.addEventListener('touchstart', handleTouchStart);
+    document.addEventListener('touchmove', handleTouchMove);
+    document.addEventListener('touchend', handleTouchEnd);
+  
+    return () => {
+      document.removeEventListener('touchstart', handleTouchStart);
+      document.removeEventListener('touchmove', handleTouchMove);
+      document.removeEventListener('touchend', handleTouchEnd);
+    };
+  }, []);
+  
 
   useEffect(() => {
     const nonEmpty = conversations.filter(c => c.messages.length > 0);
