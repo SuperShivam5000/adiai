@@ -231,7 +231,7 @@ function App() {
       <div className="flex-1 flex flex-col relative min-w-0">
         <nav className="bg-gray-800 p-4 flex items-center gap-5 shadow-lg">
           <button
-            onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+            onClick={() => setIsSidebarOpen(prev => !prev)}
             className="p-2 hover:bg-gray-700 rounded-lg transition-colors"
             aria-label="Toggle sidebar"
           >
