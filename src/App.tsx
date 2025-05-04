@@ -232,7 +232,7 @@ function App() {
         <nav className="bg-gray-800 p-4 flex items-center gap-5 shadow-lg">
           <button
             onClick={() => setIsSidebarOpen(prev => !prev)}
-            className="p-2 hover:bg-gray-700 rounded-lg transition-colors"
+            className="p-2 hover:bg-gray-700 rounded-lg transition-colors focus:outline-none active:bg-transparent"
             aria-label="Toggle sidebar"
           >
             <Menu size={24} />
