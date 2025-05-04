@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer utilities {
+    * {
+        @apply scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-200;
+    }
+}
