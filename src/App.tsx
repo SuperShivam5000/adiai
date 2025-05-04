@@ -53,42 +53,6 @@ function App() {
   }, []);
 
   useEffect(() => {
-    let touchStartX = 0;
-    let touchEndX = 0;
-
-    const handleTouchStart = (e: TouchEvent) => {
-      touchStartX = e.changedTouches[0].screenX;
-    };
-
-    const handleTouchMove = (e: TouchEvent) => {
-      touchEndX = e.changedTouches[0].screenX;
-    };
-
-    const handleTouchEnd = () => {
-      const diff = touchEndX - touchStartX;
-
-      if (diff > 50) {
-        // Swipe right
-        setIsSidebarOpen(true);
-      } else if (diff < -50) {
-        // Swipe left
-        setIsSidebarOpen(false);
-      }
-    };
-
-    document.addEventListener('touchstart', handleTouchStart);
-    document.addEventListener('touchmove', handleTouchMove);
-    document.addEventListener('touchend', handleTouchEnd);
-
-    return () => {
-      document.removeEventListener('touchstart', handleTouchStart);
-      document.removeEventListener('touchmove', handleTouchMove);
-      document.removeEventListener('touchend', handleTouchEnd);
-    };
-  }, []);
-
-
-  useEffect(() => {
     const nonEmpty = conversations.filter(c => c.messages.length > 0);
     saveConversations(nonEmpty).catch(console.error);
   }, [conversations]);
@@ -231,8 +195,8 @@ function App() {
       <div className="flex-1 flex flex-col relative min-w-0">
         <nav className="bg-gray-800 p-4 flex items-center gap-5 shadow-lg">
           <button
-            onClick={() => setIsSidebarOpen(prev => !prev)}
-            className="p-2 hover:bg-gray-700 rounded-lg transition-colors focus:outline-none active:bg-transparent"
+            onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+            className="p-2 hover:bg-gray-700 rounded-lg transition-colors"
             aria-label="Toggle sidebar"
           >
             <Menu size={24} />
