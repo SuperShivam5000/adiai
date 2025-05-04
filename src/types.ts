@@ -30,7 +30,7 @@ export const REAL_NAME_MAP = {
   'Claude 3.7 Sonnet': 'claude-3.7-sonnet',
   'Phi-4': 'phi-4',
   'Deepseek R1': 'deepseek-r1',
-  'Qwen 2.5 Max': 'qwen-2-5-max',
+  'Qwen QwQ': 'qwen-qwq',
   'Llama 4': 'llamascout',
   'Flux': 'flux',
   'Dall-E-3': 'dall-e-3',
@@ -43,7 +43,7 @@ export const MODEL_PROVIDER_MAP = {
   'Claude 3.7 Sonnet': 'PollinationsAI',
   'Phi-4': 'PollinationsAI',
   'Deepseek R1': 'PollinationsAI',
-  'Qwen 2.5 Max': 'HuggingSpace',
+  'Qwen QwQ': 'PollinationsAI',
   'Llama 4': 'PollinationsAI',
 }
 
@@ -53,7 +53,7 @@ export const ICON_MAP: Record<string, string> = {
   'Claude 3.7 Sonnet': "🧠👁️📁🔎",
   'Phi-4': "🧠👁️📁🔎",
   'Deepseek R1': "🧠📁🔎",
-  'Qwen 2.5 Max': "🧠📁🔎",
+  'Qwen QwQ': "🧠📁🔎",
   'Llama 4': "🧠📁🔎",
   'Flux': "🖼️",
   'Dall-E-3': "🖼️",
