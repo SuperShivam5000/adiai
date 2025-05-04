@@ -4,6 +4,6 @@
 
 @layer utilities {
     * {
-        @apply scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-200;
+        @apply scrollbar-thin scrollbar-thumb-gray-800 scrollbar-track-gray-900;
     }
 }
