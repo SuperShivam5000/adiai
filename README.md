@@ -23,7 +23,7 @@ No payments. No login. No questions asked.
 
 AdiAI: Unleash the full arsenal of today’s LLMs, your way. Available as a Web App (installable on any device) and as a native Android application.
 
-Tech Stack: Typescript, React.js, Vite, IDB-Keyval, Tailwind CSS, Lucide, Capacitor.js, Progressive Web Apps, Python, FastAPI, Textract, Docker, Render (Hosting), [GPT4Free](https://github.com/xtekky/gpt4free)
+Tech Stack: Typescript, React.js, Vite, IDB-Keyval, Tailwind CSS, Lucide, Capacitor.js, Progressive Web Apps, Python, FastAPI, Uvicorn, Textract, Docker, Render (Hosting), [GPT4Free](https://github.com/xtekky/gpt4free)
 
 ![Screenshot 2025-05-03 225357](https://github.com/user-attachments/assets/a9460114-2ba8-4f0a-b7f2-812522e71d8d)
 ![Screenshot 2025-05-03 225622](https://github.com/user-attachments/assets/886d9717-41e0-4213-8b2a-2b7efeefe5cf)
